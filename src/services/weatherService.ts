@@ -23,25 +23,31 @@ export interface ForecastResponse extends CurrentWeatherResponse {
   forecast: {
     forecastday: [
       {
-        maxtemp_c: number
-        maxtemp_f: number
-        mintemp_c: number
-        mintemp_f: number
-        avgtemp_c: number
-        avgtemp_f: number
-        maxwind_mph: number
-        maxwind_kph: number
-        avghumidity: number
-        condition: {
-          text: string
-          icon: string
+        day: {
+          maxtemp_c: number
+          maxtemp_f: number
+          mintemp_c: number
+          mintemp_f: number
+          avgtemp_c: number
+          avgtemp_f: number
+          maxwind_mph: number
+          maxwind_kph: number
+          avghumidity: number
+          condition: {
+            text: string
+            icon: string
+          }
+          totalprecip_mm: number
+          totalprecip_in: number
         }
-        totalprecip_mm: number
-        totalprecip_in: number
-        daily_will_it_rain: number
-        daily_chance_of_rain: number
-        daily_will_it_snow: number
-        daily_chance_of_snow: number
+        hour: [
+          {
+            daily_will_it_rain: number
+            chance_of_rain: number
+            daily_will_it_snow: number
+            chance_of_snow: number
+          },
+        ]
       },
     ]
   }
@@ -49,7 +55,7 @@ export interface ForecastResponse extends CurrentWeatherResponse {
 
 const weatherApi = axios.create({
   baseURL: 'http://api.weatherapi.com/v1/',
-  data: {
+  params: {
     key: ACCESS_KEY,
   },
 })
@@ -59,16 +65,9 @@ interface IWeatherFromLongLatProps {
   lat: number
 }
 
-export const getCurrentWeatherFromCity = (city: string) =>
-  weatherApi.get<CurrentWeatherResponse>('/current.json', {
-    data: {
-      q: city,
-    },
-  })
-
 export const getWeekForecastFromCity = (city: string) =>
   weatherApi.get<ForecastResponse>('/forecast.json', {
-    data: {
+    params: {
       q: city,
       days: 7,
     },
@@ -79,7 +78,7 @@ export const getCurrentWeatherFromLongLat = ({
   lat,
 }: IWeatherFromLongLatProps) =>
   weatherApi.get<ForecastResponse>('/forecast.json', {
-    data: {
+    params: {
       q: `${lat},${long}`,
       days: 7,
     },

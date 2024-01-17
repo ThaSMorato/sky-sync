@@ -1,7 +1,4 @@
-import {
-  CurrentWeatherResponse,
-  ForecastResponse,
-} from '@/services/weatherService'
+import { ForecastResponse } from '@/services/weatherService'
 
 interface Temperature {
   celcius: number
@@ -13,7 +10,7 @@ interface WindSpeed {
   kilometers: number
 }
 
-interface CurrentWeather {
+export interface CurrentWeather {
   location_name: string
   temperature: Temperature
   weather_icon: string
@@ -28,45 +25,24 @@ interface Precipitation {
 }
 
 interface DayliChances {
-  will_it_rain: number
-  will_it_snow: number
+  will_it_rain: boolean
+  will_it_snow: boolean
   porcentage_chance_of_rain: number
   porcentage_chance_of_snow: number
 }
 
-interface ForecastWeather extends CurrentWeather {
+export interface ForecastWeather extends CurrentWeather {
   forecast: Array<{
+    weather_icon: string
+    weather_description: string
     max_temperature: Temperature
     min_temperature: Temperature
     average_temperature: Temperature
     max_wind_speed: WindSpeed
     average_humidity: number
-    weather_icon: string
-    weather_description: string
     total_precipitation: Precipitation
     dayli_chances: DayliChances
   }>
-}
-
-export const fromCurrentResponseToWeather = (
-  weatherResponse: CurrentWeatherResponse,
-) => {
-  const weather: CurrentWeather = {
-    location_name: weatherResponse.location.name,
-    temperature: {
-      celcius: weatherResponse.current.temp_c,
-      fahrenheit: weatherResponse.current.temp_f,
-    },
-    weather_icon: weatherResponse.current.condition.icon,
-    weather_description: weatherResponse.current.condition.text,
-    wind_speed: {
-      kilometers: weatherResponse.current.wind_kph,
-      miles: weatherResponse.current.wind_mph,
-    },
-    humidity: weatherResponse.current.humidity,
-  }
-
-  return weather
 }
 
 export const fromCurrentForecastToWeatherForecast = (
@@ -87,33 +63,33 @@ export const fromCurrentForecastToWeatherForecast = (
     humidity: forecastResponse.current.humidity,
     forecast: forecastResponse.forecast.forecastday.map((forecastDay) => ({
       max_temperature: {
-        celcius: forecastDay.maxtemp_c,
-        fahrenheit: forecastDay.maxtemp_f,
+        celcius: forecastDay.day.maxtemp_c,
+        fahrenheit: forecastDay.day.maxtemp_f,
       },
       min_temperature: {
-        celcius: forecastDay.mintemp_c,
-        fahrenheit: forecastDay.mintemp_f,
+        celcius: forecastDay.day.mintemp_c,
+        fahrenheit: forecastDay.day.mintemp_f,
       },
       average_temperature: {
-        celcius: forecastDay.avgtemp_c,
-        fahrenheit: forecastDay.avgtemp_f,
+        celcius: forecastDay.day.avgtemp_c,
+        fahrenheit: forecastDay.day.avgtemp_f,
       },
       max_wind_speed: {
-        kilometers: forecastDay.maxwind_kph,
-        miles: forecastDay.maxwind_mph,
+        kilometers: forecastDay.day.maxwind_kph,
+        miles: forecastDay.day.maxwind_mph,
       },
-      average_humidity: forecastDay.avghumidity,
-      weather_icon: forecastDay.condition.icon,
-      weather_description: forecastDay.condition.text,
+      average_humidity: forecastDay.day.avghumidity,
+      weather_icon: forecastDay.day.condition.icon,
+      weather_description: forecastDay.day.condition.text,
       total_precipitation: {
-        inches: forecastDay.totalprecip_in,
-        milimeters: forecastDay.totalprecip_mm,
+        inches: forecastDay.day.totalprecip_in,
+        milimeters: forecastDay.day.totalprecip_mm,
       },
       dayli_chances: {
-        porcentage_chance_of_rain: forecastDay.daily_chance_of_rain,
-        porcentage_chance_of_snow: forecastDay.daily_chance_of_snow,
-        will_it_rain: forecastDay.daily_will_it_rain,
-        will_it_snow: forecastDay.daily_will_it_snow,
+        porcentage_chance_of_rain: forecastDay.hour[0].chance_of_rain,
+        porcentage_chance_of_snow: forecastDay.hour[0].chance_of_snow,
+        will_it_rain: forecastDay.hour[0].daily_will_it_rain > 0,
+        will_it_snow: forecastDay.hour[0].daily_will_it_snow > 0,
       },
     })),
   }
