@@ -1,47 +1,7 @@
-interface CurrentWeatherResponse {
-  location: {
-    name: string
-  }
-  current: {
-    temp_c: number
-    temp_f: number
-    condition: {
-      text: string
-      icon: string
-    }
-    wind_mph: number
-    wind_kph: number
-    humidity: number
-  }
-}
-
-interface ForecastResponse extends CurrentWeatherResponse {
-  forecast: {
-    forecastday: [
-      {
-        maxtemp_c: number
-        maxtemp_f: number
-        mintemp_c: number
-        mintemp_f: number
-        avgtemp_c: number
-        avgtemp_f: number
-        maxwind_mph: number
-        maxwind_kph: number
-        avghumidity: number
-        condition: {
-          text: string
-          icon: string
-        }
-        totalprecip_mm: number
-        totalprecip_in: number
-        daily_will_it_rain: number
-        daily_chance_of_rain: number
-        daily_will_it_snow: number
-        daily_chance_of_snow: number
-      },
-    ]
-  }
-}
+import {
+  CurrentWeatherResponse,
+  ForecastResponse,
+} from '@/services/weatherService'
 
 interface Temperature {
   celcius: number
