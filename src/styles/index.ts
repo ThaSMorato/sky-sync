@@ -12,7 +12,13 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      blue100: '#708193',
+      darkYellow: '#C4A500',
+
+      lightBlue100: '#B0FFFA',
+      lightBlue500: '#24AEA6',
+      lightBlue900: '#01FFF0',
+
+      blue100: '#E4F4FC',
       blue200: '#5D7185',
       blue300: '#50657B',
       blue400: '#445B72',
@@ -22,8 +28,8 @@ export const {
       blue800: '#14304E',
       blue900: '#001F3F',
 
-      green100: '#6FD59A',
-      green200: '#5DD08D',
+      green100: '#E9F6EF',
+      green200: '#6FD59A',
       green300: '#50CC85',
       green400: '#2ECC71',
       green500: '#37C573',
@@ -52,7 +58,7 @@ export const {
       gray800: '#474D4A',
       gray900: '#2A302C',
 
-      yellow100: '#CFF26C',
+      yellow100: '#E6F9B1',
       yellow200: '#D7ED5A',
       yellow300: '#DCEA4E',
       yellow400: '#E1E742',
@@ -81,6 +87,9 @@ export const {
     lineHeights: {
       base: '130%',
       tall: '160%',
+    },
+    sizes: {
+      maxSize: 'calc(1440px - 160px - 160px)',
     },
     fontWeights: {
       regular: '400',
