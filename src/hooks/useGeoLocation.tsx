@@ -12,9 +12,6 @@ const OPTIONS = {
 }
 
 export const useGeoLocation = () => {
-  const [geoLocationIsEnabled, setGeoLocationIsEnabled] =
-    useState<boolean>(false)
-
   const [coordenates, setCoordenates] = useState<ICoordenates | null>(null)
 
   const onGetCurrentPosition = (position: GeolocationPosition) => {
@@ -43,14 +40,11 @@ export const useGeoLocation = () => {
 
     const handleOnChange = () => {
       if (permissionStatusVar.state === 'granted') {
-        setGeoLocationIsEnabled(true)
         attemptToGetPosition()
       }
     }
 
-    if (!('geolocation' in navigator)) {
-      setGeoLocationIsEnabled(false)
-    } else {
+    if ('geolocation' in navigator) {
       navigator.permissions
         .query({ name: 'geolocation' })
         .then((permissionStatus) => {
@@ -59,7 +53,6 @@ export const useGeoLocation = () => {
             permissionStatusVar.state === 'granted' ||
             permissionStatusVar.state === 'prompt'
           ) {
-            setGeoLocationIsEnabled(permissionStatusVar.state === 'granted')
             attemptToGetPosition()
           }
 
@@ -76,6 +69,5 @@ export const useGeoLocation = () => {
 
   return {
     coordenates,
-    isGeolocationEnabled: geoLocationIsEnabled,
   }
 }

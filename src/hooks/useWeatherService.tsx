@@ -1,12 +1,7 @@
-import { AxiosError } from 'axios'
+import { useMemo } from 'react'
 
+import { fromCurrentForecastToWeatherForecast } from '@/dto/weatherDto'
 import {
-  fromCurrentForecastToWeatherForecast,
-  fromCurrentResponseToWeather,
-} from '@/dto/weatherDto'
-import { WeatherApiError } from '@/errors/weatherApiError'
-import {
-  getCurrentWeatherFromCity,
   getCurrentWeatherFromLongLat,
   getWeekForecastFromCity,
 } from '@/services/weatherService'
@@ -20,66 +15,33 @@ interface City {
   city: string
 }
 
-interface WeatherApiAxiosError {
-  error: {
-    code: number
-    message: string
-  }
-}
-
-const errorHandler = (error: unknown) => {
-  if (error instanceof AxiosError) {
-    const err = error as AxiosError<WeatherApiAxiosError>
-    throw new WeatherApiError({
-      code: err.code,
-      message: err.response?.data.error.message,
-    })
-  }
-  throw error
-}
-
 export const useWeatherService = () => {
-  const fetchForecastWithCoordenates = async ({ lat, long }: Coordenates) => {
-    try {
-      const { data } = await getCurrentWeatherFromLongLat({ lat, long })
-      const { forecast, ...current } =
-        fromCurrentForecastToWeatherForecast(data)
-      return {
-        forecast,
-        current,
-      }
-    } catch (error) {
-      errorHandler(error)
-    }
-  }
+  const fetchForecastWithCoordenates = useMemo(
+    () =>
+      async ({ lat, long }: Coordenates) => {
+        const { data } = await getCurrentWeatherFromLongLat({ lat, long })
+        console.log(data)
+        const { forecast, ...current } =
+          fromCurrentForecastToWeatherForecast(data)
+        return {
+          forecast,
+          current,
+        }
+      },
+    [],
+  )
 
   const fetchForecastWithCity = async ({ city }: City) => {
-    try {
-      const { data } = await getWeekForecastFromCity(city)
-      const { forecast } = fromCurrentForecastToWeatherForecast(data)
-      return {
-        forecast,
-      }
-    } catch (error) {
-      errorHandler(error)
-    }
-  }
-
-  const fetchCurrentWeatherWithCity = async ({ city }: City) => {
-    try {
-      const { data } = await getCurrentWeatherFromCity(city)
-      const current = fromCurrentResponseToWeather(data)
-      return {
-        current,
-      }
-    } catch (error) {
-      errorHandler(error)
+    const { data } = await getWeekForecastFromCity(city)
+    const { forecast, ...current } = fromCurrentForecastToWeatherForecast(data)
+    return {
+      forecast,
+      current,
     }
   }
 
   return {
     fetchForecastWithCoordenates,
     fetchForecastWithCity,
-    fetchCurrentWeatherWithCity,
   }
 }
