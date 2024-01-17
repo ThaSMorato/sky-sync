@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const ACCESS_KEY = import.meta.env.VITE_WEATHERSTACK_API_KEY
+const ACCESS_KEY = import.meta.env.VITE_WEATHER_API_KEY
 
 const weatherApi = axios.create({
-  baseURL: 'http://api.weatherstack.com/',
+  baseURL: 'http://api.weatherapi.com/v1/',
   data: {
-    access_key: ACCESS_KEY,
+    key: ACCESS_KEY,
   },
 })
 
@@ -14,38 +14,28 @@ interface IWeatherFromLongLatProps {
   lat: number
 }
 
-export const getCurrentWeatherFromLongLat = ({
-  long,
-  lat,
-}: IWeatherFromLongLatProps) =>
-  weatherApi.get('/current', {
-    data: {
-      query: `${lat},${long}`,
-    },
-  })
-
 export const getCurrentWeatherFromCity = (city: string) =>
-  weatherApi.get('/current', {
+  weatherApi.get('/current.json', {
     data: {
-      query: city,
+      q: city,
     },
   })
 
 export const getWeekForecastFromCity = (city: string) =>
-  weatherApi.get('/forecast', {
+  weatherApi.get('/forecast.json', {
     data: {
-      query: city,
-      forecast_days: 7,
+      q: city,
+      days: 7,
     },
   })
 
-export const getWeekForecastFromLongLat = ({
+export const getCurrentWeatherFromLongLat = ({
   long,
   lat,
 }: IWeatherFromLongLatProps) =>
-  weatherApi.get('/forecast', {
+  weatherApi.get('/forecast.json', {
     data: {
-      query: `${lat},${long}`,
-      forecast_days: 7,
+      q: `${lat},${long}`,
+      days: 7,
     },
   })
