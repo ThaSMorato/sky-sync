@@ -2,20 +2,14 @@ import { styled } from '@/styles'
 
 export const CardContainer = styled('div', {
   backgroundColor: '$green100',
-  padding: '8px',
   width: '100%',
-  border: '1px solid $blue900',
+  height: '100%',
+  borderRadius: '16px',
   variants: {
-    radius: {
-      equal: {
-        borderRadius: '6px',
-      },
-      mixed: {
-        borderRadius: '6px 24px',
+    shaddow: {
+      withShaddow: {
+        boxShadow: '1px 1px 4px 1px rgba(0, 31, 63, 0.58)',
       },
     },
-  },
-  defaultVariants: {
-    radius: 'equal',
   },
 })
