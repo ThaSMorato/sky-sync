@@ -7,3 +7,5 @@ services:
       container_name: react_vite_app
       ports:
         - '8080:8080'
+      env_file:
+        - .env
