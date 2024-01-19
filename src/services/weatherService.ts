@@ -42,7 +42,7 @@ export interface ForecastResponse extends CurrentWeatherResponse {
 }
 
 const weatherApi = axios.create({
-  baseURL: 'http://api.weatherapi.com/v1/',
+  baseURL: 'https://api.weatherapi.com/v1/',
   params: {
     key: ACCESS_KEY,
   },
