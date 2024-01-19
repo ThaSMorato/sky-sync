@@ -1,8 +1,25 @@
+import { theme } from '@/styles'
+
+interface GetVariantWithTemperaturReturn {
+  symbol: string
+  text: 'hot' | 'average' | 'cold'
+}
+
 export const getVariantWithTemperature = (
   temperature: number,
-): 'yellow' | 'blue' | 'lightBlue' | 'red' => {
-  if (temperature <= 10) return 'lightBlue'
-  if (temperature <= 17) return 'blue'
-  if (temperature <= 28) return 'yellow'
-  return 'red'
+): GetVariantWithTemperaturReturn => {
+  if (temperature <= 10)
+    return {
+      text: 'cold',
+      symbol: `${theme.colors.blue100}`,
+    }
+  if (temperature <= 17)
+    return {
+      text: 'average',
+      symbol: `${theme.colors.green300}`,
+    }
+  return {
+    text: 'hot',
+    symbol: `${theme.colors.red600}`,
+  }
 }

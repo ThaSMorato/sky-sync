@@ -12,84 +12,57 @@ export const {
 } = createStitches({
   theme: {
     colors: {
-      darkYellow: '#C4A500',
+      yellow: '#FDD700',
 
-      lightBlue100: '#B0FFFA',
-      lightBlue500: '#24AEA6',
-      lightBlue900: '#01FFF0',
-
-      blue100: '#E4F4FC',
-      blue200: '#5D7185',
-      blue300: '#50657B',
-      blue400: '#445B72',
-      blue500: '#385169',
-      blue600: '#2B455F',
-      blue700: '#1F3B57',
-      blue800: '#14304E',
       blue900: '#001F3F',
+      blue700: '#07305A',
+      blue600: '#5C85EF',
+      blue500: '#346CA6',
+      blue400: '#6EA9E8',
+      blue200: '#80A7D1',
+      blue100: '#1CAEED',
 
-      green100: '#E9F6EF',
-      green200: '#6FD59A',
-      green300: '#50CC85',
-      green400: '#2ECC71',
-      green500: '#37C573',
-      green600: '#2CC16B',
-      green700: '#20BE63',
-      green800: '#14BA5B',
-      green900: '#00B44C',
+      green100: '#DEEDEB',
+      green200: '#9ED2B4',
+      green300: '#2ECCA6',
+      green500: '#2ECC71',
+
+      gray100: '#D3D3D3',
+      gray200: '#D9D9D9',
+      gray300: '#DEEDEB',
+      gray400: '#8FA4BA',
 
       red100: '#D98880',
-      red200: '#CD7269',
-      red300: '#BF594F',
-      red400: '#BF594F',
-      red500: '#B94E43',
-      red600: '#B13F34',
-      red700: '#A93226',
-      red800: '#A12216',
-      red900: '#960D00',
+      red600: '#DE493A',
+      red900: '#b21a0c',
 
-      gray100: '#EEEEEE',
-      gray200: '#D3D3D3',
-      gray300: '#BBBCBB',
-      gray400: '#A4A6A5',
-      gray500: '#8E9190',
-      gray600: '#787C7A',
-      gray700: '#626664',
-      gray800: '#474D4A',
-      gray900: '#2A302C',
-
-      yellow100: '#E6F9B1',
-      yellow200: '#D7ED5A',
-      yellow300: '#DCEA4E',
-      yellow400: '#E1E742',
-      yellow500: '#E7E537',
-      yellow600: '#ECE12A',
-      yellow700: '#F1DE1E',
-      yellow800: '#F6DC13',
-      yellow900: '#FFD700',
+      purple: '#8780D9',
     },
     fontSizes: {
-      titleXL: '3rem',
-      titleL: '2rem',
-      titleM: '1.5rem',
-      titleS: '1.25rem',
-      titleXS: '1.125rem',
-      l: '1.25rem',
-      m: '1rem',
-      s: '0.875rem',
-      xs: '0.75rem',
-      tag: '0.625rem',
+      titleXL: '4.5rem', // 72
+      titleL: '2.25rem', // 36
+      titleM: '2rem', // 32
+      titleS: '1.625rem', // 26
+      xl: '1.5rem', // 24
+      l: '1.125rem', // 18
+      m: '1.625rem',
+      s: '1.25rem', // 20
+      xs: '1rem',
     },
     fonts: {
       default: 'Roboto, sans-serif',
       title: "'Baloo 2', sans-serif",
+      mono: "'Roboto Mono', sans-serif",
     },
     lineHeights: {
       base: '130%',
       tall: '160%',
     },
     sizes: {
-      maxSize: 'calc(1440px - 160px - 160px)',
+      maxSize: '1440px',
+    },
+    space: {
+      gridGap: '12px',
     },
     fontWeights: {
       regular: '400',

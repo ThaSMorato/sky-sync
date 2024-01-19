@@ -5,6 +5,7 @@ const ACCESS_KEY = import.meta.env.VITE_WEATHER_API_KEY
 export interface CurrentWeatherResponse {
   location: {
     name: string
+    region: string
   }
   current: {
     temp_c: number
@@ -23,6 +24,7 @@ export interface ForecastResponse extends CurrentWeatherResponse {
   forecast: {
     forecastday: [
       {
+        date: string
         day: {
           maxtemp_c: number
           maxtemp_f: number
@@ -30,24 +32,10 @@ export interface ForecastResponse extends CurrentWeatherResponse {
           mintemp_f: number
           avgtemp_c: number
           avgtemp_f: number
-          maxwind_mph: number
-          maxwind_kph: number
-          avghumidity: number
           condition: {
-            text: string
             icon: string
           }
-          totalprecip_mm: number
-          totalprecip_in: number
         }
-        hour: [
-          {
-            daily_will_it_rain: number
-            chance_of_rain: number
-            daily_will_it_snow: number
-            chance_of_snow: number
-          },
-        ]
       },
     ]
   }

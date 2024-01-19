@@ -8,6 +8,6 @@ export const globalStyles = globalCss({
   },
 
   body: {
-    backgroundColor: '$blue100',
+    backgroundColor: '$blue900',
   },
 })
