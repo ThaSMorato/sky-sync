@@ -6,17 +6,31 @@ import { getVariantWithTemperature } from '@/utils/temperatureToVariant'
 import { Text } from '../atoms/Text'
 
 interface WeatherTemperatureProps {
-  temperature: {
-    celcius: number
-    fahrenheit: number
-  }
+  temperature:
+    | {
+        celcius: number
+        fahrenheit: number
+      }
+    | undefined
 }
 
 export const WeatherTemperature = ({
   temperature,
 }: WeatherTemperatureProps) => {
-  const { text, symbol } = getVariantWithTemperature(temperature.celcius)
   const { showFahrenheit } = useSwitchUnityMeasures()
+
+  if (temperature === undefined) {
+    return (
+      <>
+        <ThermometerSimple size={50} />
+        <Text size="titleS" weight="bold" font="baloo" color="hot">
+          - -
+        </Text>
+      </>
+    )
+  }
+
+  const { text, symbol } = getVariantWithTemperature(temperature.celcius)
 
   const tempText = showFahrenheit
     ? `${temperature.fahrenheit}F°`
