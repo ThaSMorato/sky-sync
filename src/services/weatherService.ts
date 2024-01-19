@@ -48,26 +48,10 @@ const weatherApi = axios.create({
   },
 })
 
-interface IWeatherFromLongLatProps {
-  long: number
-  lat: number
-}
-
 export const getWeekForecastFromCity = (city: string) =>
   weatherApi.get<ForecastResponse>('/forecast.json', {
     params: {
       q: city,
-      days: 7,
-    },
-  })
-
-export const getCurrentWeatherFromLongLat = ({
-  long,
-  lat,
-}: IWeatherFromLongLatProps) =>
-  weatherApi.get<ForecastResponse>('/forecast.json', {
-    params: {
-      q: `${lat},${long}`,
-      days: 7,
+      days: 9,
     },
   })
