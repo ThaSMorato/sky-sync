@@ -2,6 +2,7 @@ import { Text } from '@/components/atoms/Text'
 import { Humidity } from '@/components/molecules/Humidity'
 import { WeatherTemperature } from '@/components/molecules/WeatherTemperature'
 import { WindSpeed } from '@/components/molecules/WindSpeed'
+import { translateLongDescriptions } from '@/utils/translateLongDescriptions'
 
 import {
   CurrentImageContainer,
@@ -24,7 +25,7 @@ interface CurrentWeather {
 }
 
 interface CurrentWeatherCardProps {
-  currentWeather: CurrentWeather
+  currentWeather: CurrentWeather | null
 }
 
 export const CurrentWeatherCard = ({
@@ -34,25 +35,29 @@ export const CurrentWeatherCard = ({
     <CurrentWeatherContainer shaddow="withShaddow">
       <CurrentWeatherGrid>
         <CurrentImageContainer>
-          <img
-            src={currentWeather.weather_icon}
-            alt={currentWeather.weather_description}
-          />
+          {currentWeather && (
+            <img
+              src={currentWeather.weather_icon}
+              alt={currentWeather.weather_description}
+            />
+          )}
         </CurrentImageContainer>
       </CurrentWeatherGrid>
       <CurrentWeatherGrid>
         <Text font="roboto" size="xl" color="description" weight="bold">
-          {currentWeather.weather_description}
+          {currentWeather
+            ? translateLongDescriptions(currentWeather.weather_description)
+            : '- -'}
         </Text>
       </CurrentWeatherGrid>
       <CurrentWeatherGrid>
-        <WeatherTemperature temperature={currentWeather.temperature} />
+        <WeatherTemperature temperature={currentWeather?.temperature} />
       </CurrentWeatherGrid>
       <CurrentWeatherGrid>
-        <WindSpeed windSpeed={currentWeather.wind_speed} />
+        <WindSpeed windSpeed={currentWeather?.wind_speed} />
       </CurrentWeatherGrid>
       <CurrentWeatherGrid>
-        <Humidity humidity={currentWeather.humidity} />
+        <Humidity humidity={currentWeather?.humidity} />
       </CurrentWeatherGrid>
     </CurrentWeatherContainer>
   )
