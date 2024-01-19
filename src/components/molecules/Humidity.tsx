@@ -1,39 +1,20 @@
+import { Drop } from 'phosphor-react'
+
+import { theme } from '@/styles'
+
 import { Text } from '../atoms/Text'
 
 interface HumidityProps {
   humidity: number
-  title: string
-  size?: 'l' | 's'
 }
 
-interface GetSizesResult {
-  title: 'titleS' | 's'
-  text: 'l' | 'xs'
-}
+const dropColor = `${theme.colors.blue600}`
 
-const getSizes = (size: 'l' | 's'): GetSizesResult => {
-  if (size === 'l') {
-    return {
-      title: 'titleS',
-      text: 'l',
-    }
-  }
-  return {
-    title: 's',
-    text: 'xs',
-  }
-}
-
-export const Humidity = ({ humidity, title, size = 'l' }: HumidityProps) => {
-  const sizes = getSizes(size)
-
+export const Humidity = ({ humidity }: HumidityProps) => {
   return (
     <>
-      <Text color="properties" weight="bold" size={sizes.title}>
-        {title}
-      </Text>
-
-      <Text size={sizes.text} weight="bold" font="baloo" color="green">
+      <Drop size={50} color={dropColor} />
+      <Text size="titleS" weight="bold" font="baloo" color="humidity">
         {humidity} %
       </Text>
     </>

@@ -1,3 +1,8 @@
+import { Wind } from 'phosphor-react'
+
+import { useSwitchUnityMeasures } from '@/hooks/useSwitchUnitMeasures'
+import { theme } from '@/styles'
+
 import { Text } from '../atoms/Text'
 
 interface WindSpeedProps {
@@ -5,44 +10,23 @@ interface WindSpeedProps {
     miles: number
     kilometers: number
   }
-  title: string
-  size?: 'l' | 's'
 }
 
-interface GetSizesResult {
-  title: 'titleS' | 's'
-  text: 'l' | 'xs'
-}
+const windColor = `${theme.colors.blue200}`
 
-const getSizes = (size: 'l' | 's'): GetSizesResult => {
-  if (size === 'l') {
-    return {
-      title: 'titleS',
-      text: 'l',
-    }
-  }
-  return {
-    title: 's',
-    text: 'xs',
-  }
-}
+export const WindSpeed = ({ windSpeed }: WindSpeedProps) => {
+  const { showMilesPerHour } = useSwitchUnityMeasures()
 
-export const WindSpeed = ({ windSpeed, title, size = 'l' }: WindSpeedProps) => {
-  const sizes = getSizes(size)
+  const windText = showMilesPerHour
+    ? `${windSpeed.miles}M/h`
+    : `${windSpeed.kilometers}K/h`
 
   return (
     <>
-      <Text color="properties" weight="bold" size={sizes.title}>
-        {title}
+      <Wind size={50} color={windColor} />
+      <Text size="titleS" weight="bold" font="baloo" color="wind">
+        {windText}
       </Text>
-      <div>
-        <Text size={sizes.text} weight="bold" font="baloo" color="green">
-          {windSpeed.kilometers} KPH
-        </Text>
-        <Text size={sizes.text} weight="bold" font="baloo" color="green">
-          {windSpeed.miles} MPH
-        </Text>
-      </div>
     </>
   )
 }

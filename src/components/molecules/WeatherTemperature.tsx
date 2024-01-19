@@ -1,3 +1,6 @@
+import { ThermometerSimple } from 'phosphor-react'
+
+import { useSwitchUnityMeasures } from '@/hooks/useSwitchUnitMeasures'
 import { getVariantWithTemperature } from '@/utils/temperatureToVariant'
 
 import { Text } from '../atoms/Text'
@@ -7,59 +10,24 @@ interface WeatherTemperatureProps {
     celcius: number
     fahrenheit: number
   }
-  title: string
-  size?: 'l' | 's'
-}
-
-interface GetSizesResult {
-  title: 'titleS' | 's'
-  text: 'l' | 'xs'
-}
-
-const getSizes = (size: 'l' | 's'): GetSizesResult => {
-  if (size === 'l') {
-    return {
-      title: 'titleS',
-      text: 'l',
-    }
-  }
-  return {
-    title: 's',
-    text: 'xs',
-  }
 }
 
 export const WeatherTemperature = ({
   temperature,
-  title,
-  size = 'l',
 }: WeatherTemperatureProps) => {
-  const temperatureVariant = getVariantWithTemperature(temperature.celcius)
-  const sizes = getSizes(size)
+  const { text, symbol } = getVariantWithTemperature(temperature.celcius)
+  const { showFahrenheit } = useSwitchUnityMeasures()
+
+  const tempText = showFahrenheit
+    ? `${temperature.fahrenheit}F°`
+    : `${temperature.celcius}C°`
 
   return (
     <>
-      <Text color="properties" weight="bold" size={sizes.title}>
-        {title}
+      <ThermometerSimple size={50} color={symbol} />
+      <Text size="titleS" weight="bold" font="baloo" color={text}>
+        {tempText}
       </Text>
-      <div>
-        <Text
-          size={sizes.text}
-          weight="bold"
-          font="baloo"
-          color={temperatureVariant}
-        >
-          {temperature.celcius} C
-        </Text>
-        <Text
-          size={sizes.text}
-          weight="bold"
-          font="baloo"
-          color={temperatureVariant}
-        >
-          {temperature.fahrenheit} F
-        </Text>
-      </div>
     </>
   )
 }
