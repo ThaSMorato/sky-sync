@@ -6,9 +6,9 @@ import { Input } from '../../../src/components/atoms/Input'
 
 vitest.mock('../../../src/components/atoms/Input/styles', () => {
   const InputContainerMock = ({ children }: { children: ReactNode }) => (
-    <label data-testId="label-id">{children}</label>
+    <label data-testid="label-id">{children}</label>
   )
-  const InputComponentMock = () => <input data-testId="input-id" />
+  const InputComponentMock = () => <input data-testid="input-id" />
   return {
     InputContainer: InputContainerMock,
     InputComponent: InputComponentMock,

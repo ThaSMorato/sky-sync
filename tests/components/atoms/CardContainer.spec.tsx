@@ -6,7 +6,7 @@ import { CardContainer } from '../../../src/components/atoms/CardContainer'
 
 const sut = (children: ReactNode) => {
   const element = render(
-    <CardContainer data-testId="container-id">{children}</CardContainer>,
+    <CardContainer data-testid="container-id">{children}</CardContainer>,
   )
 
   return {
@@ -16,7 +16,7 @@ const sut = (children: ReactNode) => {
 
 describe('CardContainer Component', () => {
   it('should render the CardContainer component with children', () => {
-    sut(<p data-testId="children-id">Test</p>)
+    sut(<p data-testid="children-id">Test</p>)
 
     const cardContainer = screen.getByTestId('children-id')
     const container = screen.getByTestId('container-id')

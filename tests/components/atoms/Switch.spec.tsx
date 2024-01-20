@@ -6,10 +6,10 @@ import { Switch } from '../../../src/components/atoms/Switch'
 
 vitest.mock('../../../src/components/atoms/Switch/styles', () => {
   const SwitchWrapperMock = ({ children }: { children: ReactNode }) => (
-    <label data-testId="label-id">{children}</label>
+    <label data-testid="label-id">{children}</label>
   )
-  const SwitchInputMock = () => <input data-testId="input-id" />
-  const SwtichSliderMock = () => <span data-testId="span-id" />
+  const SwitchInputMock = () => <input data-testid="input-id" />
+  const SwtichSliderMock = () => <span data-testid="span-id" />
 
   return {
     SwitchWrapper: SwitchWrapperMock,
