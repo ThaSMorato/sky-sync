@@ -1,3 +1,6 @@
+/// <reference types="vitest" />
+/// <reference types="vite/client" />
+
 import react from '@vitejs/plugin-react'
 import { defineConfig } from 'vite'
 import tsConfigPaths from 'vite-tsconfig-paths'
@@ -9,6 +12,13 @@ export default defineConfig({
   preview: {
     port: 8080,
     strictPort: true,
+  },
+  test: {
+    environment: 'jsdom',
+    globals: true,
+    setupFiles: ['./tests/setup.ts'],
+    root: './',
+    include: ['**/*.spec.tsx'],
   },
   server: {
     port: 8080,
