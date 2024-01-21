@@ -5,7 +5,7 @@ import { Input } from '@/components/atoms/Input'
 
 import { FormContainer } from './styles'
 
-interface SearchForm extends ComponentProps<typeof FormContainer> {
+interface SearchFormProps extends ComponentProps<typeof FormContainer> {
   onInputChange?: (event: ChangeEvent<HTMLInputElement>) => void
   value?: string
   buttonVariant?: ComponentProps<typeof Button>['variant']
@@ -23,7 +23,7 @@ export const SearchForm = ({
   children,
   disabled,
   ...props
-}: SearchForm) => {
+}: SearchFormProps) => {
   return (
     <FormContainer {...props} variant={variant}>
       <Input
