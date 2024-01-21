@@ -1,4 +1,4 @@
-import { createEvent, fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import React, { ChangeEvent, ReactNode } from 'react'
 import { describe, expect, it, vitest } from 'vitest'
 
@@ -80,11 +80,8 @@ describe('SearchForm Component', () => {
     const { onChangeInput } = sut('a value', 'variant-a', 'Test')
 
     const input = screen.getByDisplayValue('a value')
-    const event = createEvent('change', input, undefined, {
-      EventType: 'ChangeEvent<HTMLInputElement>',
-    })
 
-    fireEvent(input, event)
+    fireEvent.change(input, { target: { value: 'test' } })
 
     expect(onChangeInput).toHaveBeenCalled()
   })
