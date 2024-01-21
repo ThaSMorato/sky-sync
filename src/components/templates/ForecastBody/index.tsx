@@ -40,6 +40,7 @@ export const ForecastBody = () => {
             inputVariant="purple"
             buttonVariant="purple"
             disabled={isLoading}
+            value={cityName}
             onSubmit={handleSearchCityWeather}
             onInputChange={handleCityNameChange}
           >
