@@ -1,0 +1,72 @@
+describe('Home e2e test', () => {
+  it('should search for a city and change to F/Miles', () => {
+    cy.visit('http://localhost:8080')
+
+    const form = cy.get('header').find('form').first()
+
+    form
+      .find('input')
+      .first()
+      .type('Jaboticabal')
+      .should('have.value', 'Jaboticabal')
+
+    cy.get('header').get('form').first().find('button').first().click()
+
+    const title = cy.get('main').find('div').first().find('p').first()
+
+    title.should('have.text', 'Jaboticabal, Sao Paulo')
+
+    cy.get('main')
+      .get('div:nth-child(2)')
+      .get('div')
+      .first()
+      .get('div')
+      .first()
+      .get('p')
+      .first()
+      .invoke('text')
+      .should('not.include', '- -')
+    cy.get('main>div>div:nth-child(1)>div>div:nth-child(3)>p')
+      .invoke('text')
+      .should('not.include', '- -')
+    cy.get('main>div>div:nth-child(1)>div>div:nth-child(3)>p')
+      .invoke('text')
+      .should('include', 'C°')
+    cy.get('main>div>div:nth-child(1)>div>div:nth-child(4)>p')
+      .invoke('text')
+      .should('not.include', '- -')
+    cy.get('main>div>div:nth-child(1)>div>div:nth-child(4)>p')
+      .invoke('text')
+      .should('include', 'K/h')
+    cy.get('main>div>div:nth-child(1)>div>div:nth-child(5)>p')
+      .invoke('text')
+      .should('not.include', '- -')
+    cy.get('main>div>div:nth-child(1)>div>div:nth-child(5)>p')
+      .invoke('text')
+      .should('include', '%')
+
+    cy.get('main>div>div>div:nth-child(1)>div>div:nth-child(1)>p')
+      .invoke('text')
+      .should('include', 'C°')
+
+    cy.get('main>div>div>div:nth-child(1)>div>div:nth-child(2)>p')
+      .invoke('text')
+      .should('include', 'C°')
+
+    cy.get('#root>div>div>div>div>div:nth-child(1)>label').click()
+    cy.get('#root>div>div>div>div>div:nth-child(2)>label').click()
+
+    cy.get('main>div>div>div:nth-child(1)>div>div:nth-child(1)>p')
+      .invoke('text')
+      .should('include', 'F°')
+    cy.get('main>div>div>div:nth-child(1)>div>div:nth-child(2)>p')
+      .invoke('text')
+      .should('include', 'F°')
+    cy.get('main>div>div:nth-child(1)>div>div:nth-child(3)>p')
+      .invoke('text')
+      .should('include', 'F°')
+    cy.get('main>div>div:nth-child(1)>div>div:nth-child(4)>p')
+      .invoke('text')
+      .should('include', 'M/h')
+  })
+})
