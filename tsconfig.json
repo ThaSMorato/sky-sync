@@ -28,9 +28,9 @@
 
     // tests
     "types": [
-      "vitest/globals"
+      "vitest/globals", "cypress"
     ]
   },
-  "include": ["src"],
+  "include": ["**/*.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
