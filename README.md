@@ -2,7 +2,7 @@
 
 ![SkySync Logo](/public/assets/relicon.svg)
 
-SkySync is a web application designed for researching the current weather and forecasts in cities around the world. Built with cutting-edge technologies, including React, Vite, Stitches, Docker, TypeScript, Axios, Dayjs, Phosphor icons, and tested with Cypress and Vitest.
+SkySync is a web application designed for researching the current weather and forecasts in cities around the world.
 
 ## Features
 
