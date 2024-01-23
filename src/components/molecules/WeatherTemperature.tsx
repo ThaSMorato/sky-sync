@@ -23,7 +23,13 @@ export const WeatherTemperature = ({
     return (
       <>
         <ThermometerSimple size={50} />
-        <Text size="titleS" weight="bold" font="baloo" color="hot">
+        <Text
+          size="titleS"
+          weight="bold"
+          font="baloo"
+          color="hot"
+          data-cy="temp"
+        >
           - -
         </Text>
       </>
@@ -39,7 +45,13 @@ export const WeatherTemperature = ({
   return (
     <>
       <ThermometerSimple size={50} color={symbol} />
-      <Text size="titleS" weight="bold" font="baloo" color={text}>
+      <Text
+        size="titleS"
+        weight="bold"
+        font="baloo"
+        color={text}
+        data-cy="temp"
+      >
         {tempText}
       </Text>
     </>

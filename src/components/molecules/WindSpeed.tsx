@@ -23,7 +23,13 @@ export const WindSpeed = ({ windSpeed }: WindSpeedProps) => {
     return (
       <>
         <Wind size={50} color={windColor} />
-        <Text size="titleS" weight="bold" font="baloo" color="wind">
+        <Text
+          size="titleS"
+          weight="bold"
+          font="baloo"
+          color="wind"
+          data-cy="wind"
+        >
           - -
         </Text>
       </>
@@ -37,7 +43,13 @@ export const WindSpeed = ({ windSpeed }: WindSpeedProps) => {
   return (
     <>
       <Wind size={50} color={windColor} />
-      <Text size="titleS" weight="bold" font="baloo" color="wind">
+      <Text
+        size="titleS"
+        weight="bold"
+        font="baloo"
+        color="wind"
+        data-cy="wind"
+      >
         {windText}
       </Text>
     </>

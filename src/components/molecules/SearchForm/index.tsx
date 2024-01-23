@@ -33,7 +33,7 @@ export const SearchForm = ({
         value={value}
         variant={inputVariant}
       />
-      <Button variant={buttonVariant} disabled={disabled}>
+      <Button variant={buttonVariant} disabled={disabled} data-cy="submit">
         {children}
       </Button>
     </FormContainer>

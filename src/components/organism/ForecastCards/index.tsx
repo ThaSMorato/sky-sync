@@ -16,7 +16,7 @@ export const ForecastCards = () => {
   return (
     <ForecastCardsContainer as="main">
       <ForecastCardsHeader>
-        <Text font="mono" color="city" size="xl">
+        <Text font="mono" color="city" size="xl" data-cy="location">
           {currentWeather ? currentWeather.location_name : '- - , - -'}
         </Text>
       </ForecastCardsHeader>

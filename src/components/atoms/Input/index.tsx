@@ -9,7 +9,7 @@ interface InputProps extends ComponentProps<typeof InputComponent> {
 export const Input = ({ variant, ...props }: InputProps) => {
   return (
     <InputContainer variant={variant}>
-      <InputComponent {...props} />
+      <InputComponent {...props} data-cy="input" />
     </InputContainer>
   )
 }

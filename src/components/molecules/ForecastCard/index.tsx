@@ -60,7 +60,13 @@ export const ForecastCard = ({ forecastWeather }: ForecastCardProps) => {
       <CurrentWeatherGrid>
         <div>
           <ThermometerSimple size={40} color={`${averageColor}`} />
-          <Text size="titleL" color="average" font="baloo" weight="bold">
+          <Text
+            size="titleL"
+            color="average"
+            font="baloo"
+            weight="bold"
+            data-cy="average"
+          >
             {showFahrenheit
               ? `${forecastWeather.average_temperature.fahrenheit}F°`
               : `${forecastWeather.average_temperature.celcius}C°`}
@@ -68,13 +74,13 @@ export const ForecastCard = ({ forecastWeather }: ForecastCardProps) => {
         </div>
         <div>
           <ThermometerCold weight="bold" size={16} color={`${coldColor}`} />
-          <Text size="xs" color="cold" font="baloo" weight="bold">
+          <Text size="xs" color="cold" font="baloo" weight="bold" data-cy="min">
             {showFahrenheit
               ? `${forecastWeather.min_temperature.fahrenheit}F°`
               : `${forecastWeather.min_temperature.celcius}C°`}
           </Text>
           <ThermometerHot weight="bold" size={16} color={`${hotColor}`} />
-          <Text size="xs" color="hot" font="baloo" weight="bold">
+          <Text size="xs" color="hot" font="baloo" weight="bold" data-cy="max">
             {showFahrenheit
               ? `${forecastWeather.max_temperature.fahrenheit}F°`
               : `${forecastWeather.max_temperature.celcius}C°`}

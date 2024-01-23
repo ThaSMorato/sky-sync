@@ -44,7 +44,13 @@ export const CurrentWeatherCard = ({
         </CurrentImageContainer>
       </CurrentWeatherGrid>
       <CurrentWeatherGrid>
-        <Text font="roboto" size="xl" color="description" weight="bold">
+        <Text
+          font="roboto"
+          size="xl"
+          color="description"
+          weight="bold"
+          data-cy="description"
+        >
           {currentWeather
             ? translateLongDescriptions(currentWeather.weather_description)
             : '- -'}

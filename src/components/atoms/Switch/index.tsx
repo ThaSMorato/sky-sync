@@ -8,12 +8,8 @@ interface SwitchProps
 export const Switch = (props: SwitchProps) => {
   return (
     <SwitchWrapper>
-      <SwitchInput
-        type="checkbox"
-        {...props}
-        // onChange={(e) => console.log(e.target.checked)}
-      />
-      <SwtichSlider />
+      <SwitchInput type="checkbox" {...props} />
+      <SwtichSlider data-cy="switch" />
     </SwitchWrapper>
   )
 }

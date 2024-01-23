@@ -15,7 +15,13 @@ export const Humidity = ({ humidity }: HumidityProps) => {
     return (
       <>
         <Drop size={50} color={dropColor} />
-        <Text size="titleS" weight="bold" font="baloo" color="humidity">
+        <Text
+          size="titleS"
+          weight="bold"
+          font="baloo"
+          color="humidity"
+          data-cy="humidity"
+        >
           - -
         </Text>
       </>
@@ -25,7 +31,13 @@ export const Humidity = ({ humidity }: HumidityProps) => {
   return (
     <>
       <Drop size={50} color={dropColor} />
-      <Text size="titleS" weight="bold" font="baloo" color="humidity">
+      <Text
+        size="titleS"
+        weight="bold"
+        font="baloo"
+        color="humidity"
+        data-cy="humidity"
+      >
         {humidity} %
       </Text>
     </>
