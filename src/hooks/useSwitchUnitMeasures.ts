@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 
-import { SwitchUnitMeasuresContext } from '@/context/switchUnityMesuresContext'
+import { SwitchUnitMeasureContextValue, SwitchUnitMeasuresContext } from '@/context/switchUnityMesuresContext'
 
-export const useSwitchUnityMeasures = () => {
+export const useSwitchUnityMeasures = ():SwitchUnitMeasureContextValue => {
   const context = useContext(SwitchUnitMeasuresContext)
 
   if (!context) {

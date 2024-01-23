@@ -21,7 +21,7 @@ export interface ForecastWeather {
   }
 }
 
-interface WeatherForecastContextValue {
+export interface WeatherForecastContextValue {
   currentWeather: CurrentWeather | null
   forecastWeather: ForecastWeather[] | null
   isLoading: boolean

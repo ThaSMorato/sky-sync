@@ -1,8 +1,11 @@
 import { useContext } from 'react'
 
-import { WeatherForecastContext } from '@/context/weatherForecastContext'
+import {
+  WeatherForecastContext,
+  WeatherForecastContextValue,
+} from '@/context/weatherForecastContext'
 
-export const useWeathers = () => {
+export const useWeathers = (): WeatherForecastContextValue => {
   const context = useContext(WeatherForecastContext)
 
   if (!context) {

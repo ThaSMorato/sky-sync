@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useState } from 'react'
 
-interface SwitchUnitMeasureContextValue {
+export interface SwitchUnitMeasureContextValue {
   switchTemperatureUnitOfMeasure: () => void
   switchVelocityUnitOfMeasure: () => void
   showFahrenheit: boolean
