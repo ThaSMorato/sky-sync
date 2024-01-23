@@ -28,8 +28,8 @@ To get started with SkySync, follow these simple steps:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/seu-usuario/skysync.git
-   cd skysync
+   git clone git@github.com:ThaSMorato/sky-sync.git
+   cd sky-sync
    ```
 
 2. **Install dependencies:**
