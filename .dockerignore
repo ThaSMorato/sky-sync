@@ -3,6 +3,11 @@ build
 dist
 node_modules
 LICENSE
+cypress
+cypress.config.ts
+pnpm-lock.yaml
+vercel.json
 .git
 .DS_Store
 .env
+tests
